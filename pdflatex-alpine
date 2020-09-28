@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+container_version=latest
+container_name=docker-pdflatex-alpine
+
+COMMAND="$1"
+
+function usage(){
+    echo """
+Usage:	pdflatex-alpine ACTION
+
+Action Commands :
+  build <filename>	      Opens a noddy container with bash session
+
+"""
+}
+
+function run(){
+
+    FILENAME=$1
+
+    [[ -z "${FILENAME}" ]] && echo "<filename> is missing! Please set it correctly."
+
+    docker run \
+        --name ${container_name} \
+        -v $(PWD):/var/temp \
+        --rm -ti \
+        ${container_name}:${container_version} \
+        pdflatex -interaction=nonstopmode -halt-on-error -output-directory /var/temp/ $FILENAME
+}
+
+if [[ "$COMMAND" == "help" ]] || [[ "$COMMAND" == "usage" ]] || [[ -z "$COMMAND" ]];then
+    usage
+    exit 0
+fi
+
+if [[ "$COMMAND" == "build" ]] || [[ "$COMMAND" == "run" ]] || [[ "$COMMAND" == "compile" ]];then
+    run ${*:2}
+    exit 0
+fi
+
+echo "ERROR : check 'usage' to see if you're missing something on the command you tried."
+usage
+exit 0

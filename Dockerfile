@@ -5,4 +5,5 @@ RUN apk add --no-cache \
 
 WORKDIR /var/temp
 
-CMD ["pdflatex","-interaction=nonstopmode","-halt-on-error","-output-directory","/var/temp/","your-file.tex"]
+CMD ["/bin/sh"]
+#CMD ["pdflatex","-interaction=nonstopmode","-halt-on-error","-output-directory","/var/temp/","your-file.tex"]
