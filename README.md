@@ -2,7 +2,7 @@
 yet another docker alpine image to use pdflatex
 
 ## Requirements
-- Docker (known working versions: `19.03.12`)
+- [Docker](https://docs.docker.com/engine/install/) (known working versions: `19.03.12`)
 
 ## How to use
 
