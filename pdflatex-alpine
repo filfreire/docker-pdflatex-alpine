@@ -23,7 +23,7 @@ function run(){
 
     docker run \
         --name ${container_name} \
-        -v $(PWD):/var/temp \
+        -v $(pwd):/var/temp \
         --rm -ti \
         ${container_name}:${container_version} \
         pdflatex -interaction=nonstopmode -halt-on-error -output-directory /var/temp/ $FILENAME
